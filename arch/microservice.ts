@@ -26,6 +26,7 @@ export class Microservice implements ArchElement {
             style: {
                 size: 80,
                 src: '/icons/10035-icon-service-App-Services.svg',
+                labelText: this.name,
             },
         };
     }
