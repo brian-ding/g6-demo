@@ -1,3 +1,4 @@
+import { NodeData } from "@antv/g6";
 import { ArchElement } from ".";
 
 export class Microservice implements ArchElement {
@@ -16,5 +17,17 @@ export class Microservice implements ArchElement {
         this.dependencies.push(element);
 
         return this;
+    }
+
+
+    toNode (): NodeData {
+        return {
+            id: this.id,
+            type: 'image',
+            style: {
+                size: 80,
+                src: '/icons/10035-icon-service-App-Services.svg',
+            },
+        };
     }
 }
