@@ -32,6 +32,9 @@ export class ArchDataGenerator {
             id: element.id,
             type: 'image',
             combo: element.group?.id,
+            data: {
+                ...element.properties,
+            },
             style: {
                 size: 80,
                 src: '/icons/10035-icon-service-App-Services.svg',

@@ -5,6 +5,7 @@ export interface ArchElement {
     name: string;
     dependencies: ArchElement[];
     group?: ArchElementGroup;
+    properties?: Record<string, any>;
 
     dependsOn (element: ArchElement): ArchElement;
 }

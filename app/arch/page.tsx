@@ -1,14 +1,15 @@
 'use client';
 
 import { ArchDataGenerator } from '@/data/generator';
-import { Graph } from '@antv/g6';
-import { useEffect, useRef } from 'react';
+import { Graph, NodeEvent } from '@antv/g6';
+import { useEffect, useRef, useState } from 'react';
+import { IPointerEvent } from '@antv/g6/lib/types';
 
 export default () => {
     const containerRef = useRef<HTMLDivElement>(null);
+    const [properties, setProperties] = useState<string>('side bar');
 
     useEffect(() => {
-
         const data = new ArchDataGenerator().generate();
 
         const graph = new Graph({
@@ -28,6 +29,12 @@ export default () => {
         });
 
         graph.render();
+        graph.on<IPointerEvent>(NodeEvent.CLICK, (evt) => {
+            const nodeData = graph.getNodeData((evt.target as any).id);
+            console.log('node click', nodeData.data);
+            setProperties(JSON.stringify(nodeData.data, null, 2));
+        });
+
     }, []);
 
     return (
@@ -53,7 +60,7 @@ export default () => {
                     flexGrow: 0,
                     background: '#123456',
                     color: '#FFFFFF',
-                }}>side bar</div>
+                }}>{properties}</div>
             </div>
         </div>
     );

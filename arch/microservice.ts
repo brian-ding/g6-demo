@@ -6,12 +6,16 @@ export class Microservice implements ArchElement {
     name: string;
     dependencies: ArchElement[];
     group?: ArchElementGroup;
+    properties?: Record<string, any>;
 
     constructor(id: string, name: string, group?: ArchElementGroup) {
         this.id = id;
         this.name = name;
         this.dependencies = [];
         this.group = group;
+        this.properties = {
+            'hello': `world, {id: ${id}}`,
+        };
     }
 
     dependsOn (element: ArchElement): ArchElement {
